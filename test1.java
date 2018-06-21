@@ -60,5 +60,19 @@ public class NewTest2 extends NewTest
 		driver.findElement(By.linkText("Proceed")).click();
 	}
 	
+	@Test(priority=5)
+	public void fifthTest()
+	{
+		String window=launch();
+		driver.switchTo().window(window);
+		driver.findElement(By.id("name")).sendKeys("ABCD");
+		Assert.assertTrue(driver.findElement(By.id("submit")).isEnabled());
+		driver.findElement(By.id("submit")).click();
+		driver.switchTo().window(parent_window);
+		driver.findElement(By.linkText("Proceed")).click();
+		driver.navigate().back();
+		String str1=driver.getWindowHandle();
+		Assert.assertEquals(str1, parent_window);
+		driver.findElement(By.linkText("Proceed")).click();
+	}
 }
-
