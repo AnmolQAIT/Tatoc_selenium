@@ -1,5 +1,7 @@
 package test;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,21 +21,21 @@ public class NewTest2 extends NewTest
 		driver.findElement(By.linkText("Basic Course")).click();
 		
 	}
-	@Test
+	@Test(priority=1)
 	public void firstTest()
 	{
 	Assert.assertEquals(driver.getTitle(),"Grid Gate - Basic Course - T.A.T.O.C");
 		
 	}
   
-	@Test
+	@Test(priority=2)
 	public void secondTest()
 	{
 		Assert.assertTrue(driver.findElement(By.className("greenbox")).isDisplayed());
          GreenBox();
 	}
 	
-	@Test
+	@Test(priority=3)
 	public void thirdTest()
 	{
 		String str=RepaintBoxTest();
@@ -46,20 +48,17 @@ public class NewTest2 extends NewTest
 		driver.findElement(By.linkText("Proceed")).click();
 	}
 	
-	@Test
+	@Test(priority=4)
 	public void fourthTest()
 	{
-		//driver.get("http://10.0.1.86/tatoc/basic/drag#");
-		Assert.assertEquals(driver.getTitle(),"Grid Gate - Basic Course - T.A.T.O.C");
+		
+				//Assert.assertEquals(driver.getTitle(),"Grid Gate - Basic Course - T.A.T.O.C");
 		Assert.assertTrue(driver.findElement(By.id("dropbox")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("dragbox")).isDisplayed());
 		DragTest();
 		Assert.assertTrue(driver.findElement(By.linkText("Proceed")).isEnabled());
 		driver.findElement(By.linkText("Proceed")).click();
 	}
-	@AfterClass
-	public void closeTest()
-	{
-		driver.close();
-	}
+	
 }
+
